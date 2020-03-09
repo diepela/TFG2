@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TenisApp</string>
+    <string name="inicio">Inicia sesión o regístrate:</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="name">Nombre</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="infoRegister">Introduce los datos:</string>
+    <string name="brazo">¿Cuál es tu brazo dominante?</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="edit">Editar perfil</string>
+    <string name="delete">Eliminar Perfil</string>
+    <string name="cerrarSesion">Cerrar sesión</string>
+    <string-array name="brazobueno">
+        <item>Derecho</item>
+        <item>Izquierdo</item>
+    </string-array>
+</resources>
