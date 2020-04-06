@@ -15,7 +15,9 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table usuarios(id integer primary key, username text, nombre text, brazo boolean)");    //Falta brazo boolean
+        db.execSQL("create table usuarios(id integer primary key, username text, nombre text, brazo boolean)");
+        db.execSQL("create table golpes(idGolpe integer primary key, idUsuario integer, tipoGolpe integer, fecha text)");
+        // db.execSQL("create table datosgolpes(idgolpe integer primary key, coordenadas etc)");
     }
 
     @Override

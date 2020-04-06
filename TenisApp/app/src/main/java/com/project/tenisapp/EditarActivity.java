@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -74,6 +75,45 @@ public class EditarActivity extends AppCompatActivity {
         finish();
 
 
+
+    }
+
+    public void deleteDialogo (final View v){
+
+        // Sacamos el diálogo de confirmación al pulsar el botón Eliminar
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Eliminar el perfil");
+        builder.setMessage("¿Seguro que quieres eliminar el perfil?");        // add the buttons
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                eliminaPerfil(v);
+            }
+        });
+        builder.setNegativeButton("Rechazar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void eliminaPerfil(View v){
+
+        // Consulta a la base de datos para encontrar el usuario (siempre existirá ya que si no no se puede acceder a esta Actividad)
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+
+        SharedPreferences preferencias = getSharedPreferences
+                ("usuario", Context.MODE_PRIVATE);
+        String user = preferencias.getString("user", "No existe el usuario");
+
+        // Petición de eliminación del registro
+        bd.delete("Usuarios", "username='" + user + "'", null);
+
+        Toast.makeText(this, "Usuario eliminado",
+                Toast.LENGTH_SHORT).show();
+
+        // Volvemos a pantalla de inicio
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        startActivity(intent);
 
     }
 }
